@@ -35,7 +35,7 @@ public class OrderDAOImpl implements OrderDAO {
 	public void saveOrder(Order Order) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		// save/upate the customer ... finally LOL
+		// save/upate the customer ... finally 
 		currentSession.saveOrUpdate(Order);
 
 	}

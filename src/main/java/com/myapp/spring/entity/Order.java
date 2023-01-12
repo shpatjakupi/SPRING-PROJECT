@@ -8,13 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Item")
+@Table(name="Orders")
 public class Order {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="Id")
 	private int id;
+	
+	@Column(name="Cart_id")
+	private int cartId;
 	
 	@Column(name="Details")
 	private String details;
@@ -27,10 +30,18 @@ public class Order {
 		return id;
 	}
 
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getDetails() {
 		return details;
 	}
