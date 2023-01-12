@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -50,7 +51,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 		// for sanity's sake, let's log url and user ... just to make sure we are reading the data
 		logger.info("jdbc.url=" + env.getProperty("jdbc.url"));
 		logger.info("jdbc.user=" + env.getProperty("jdbc.user"));
-		
+		logger.info("SHJA.TEST");
 		// set database connection props
 		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		myDataSource.setUser(env.getProperty("jdbc.user"));

@@ -8,24 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="item")
-public class Item {
-
+@Table(name="Cart")
+public class Cart {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="Id")
 	private int id;
 	
-	@Column(name="name")
+	@Column(name="Name")
 	private String name;
 	
-	@Column(name="description")
-	private String description;
+	@Column(name="Details")
+	private String details;
 	
-	@Column(name="price")
-	private int price;
+	@Column(name="Full_price")
+	private int fullPrice;
 	
-	public Item() {
+
+	public Cart() {
 		
 	}
 
@@ -45,26 +46,28 @@ public class Item {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDetails() {
+		return details;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDetails(String details) {
+		this.details = details;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	public int getFullPrice() {
+		return fullPrice;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice + "]";
+	}
+
+	public void setFullPrice(int fullPrice) {
+		this.fullPrice = fullPrice;
 	}
 	
 	
+	
+
 }
