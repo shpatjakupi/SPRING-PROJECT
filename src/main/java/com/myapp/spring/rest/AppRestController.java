@@ -3,6 +3,8 @@ package com.myapp.spring.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myapp.spring.entity.Cart;
 import com.myapp.spring.entity.Order;
+import com.myapp.spring.entity.ShopRequest;
 import com.myapp.spring.service.CartService;
 import com.myapp.spring.service.OrderService;
 
@@ -34,25 +37,34 @@ public class AppRestController {
 	}
 	
 	@PostMapping("/addCart")
-	public Cart addItem(@RequestBody Cart cart) {
-		
-		// also just in case the pass an id in JSON ... set id to 0
-		// this is force a save of new item ... instead of update
+	public ResponseEntity<String> addItem(@RequestBody ShopRequest req) {
+		Cart cart = req.getCart();
 		
 		cart.setId(0);
-		
 		cartService.saveCart(cart);
-		
 		int cartId = cart.getId();
+		List<Order> orders = req.getOrders();
+		for(Order order : orders) {
+			order.setCartId(cartId);
+			orderService.saveOrder(order);
+		}
 		
-		Order order = new Order();
-		order.setCartId(cartId);
-		
-		orderService.saveOrder(order);
-		
-		return cart;
+		return new ResponseEntity<>("Data submitted successfullys", HttpStatus.OK);
+
 	}
 	
+	// also just in case the pass an id in JSON ... set id to 0
+	// this is force a save of new item ... instead of update
+	
+//	cart.setId(0);
+//	
+//	cartService.saveCart(cart);
+//	
+//	int cartId = cart.getId();
+//	
+//	Order order = new Order();
+//	order.setCartId(cartId);
+//	orderService.saveOrder(order);
 	@GetMapping("/getCart/{cartId}")
 	public Cart addItem(@PathVariable int cartId) {
 		
