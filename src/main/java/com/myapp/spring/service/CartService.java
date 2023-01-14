@@ -10,4 +10,7 @@ public interface CartService {
 	public void saveCart(Cart cart);
 
 	public Cart getCart(int cartId);
+	
+
+	public Cart getNewCart();
 }

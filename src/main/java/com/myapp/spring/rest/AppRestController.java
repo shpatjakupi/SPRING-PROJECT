@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,68 +22,48 @@ import com.myapp.spring.service.OrderService;
 @RestController
 @RequestMapping("/order-app")
 public class AppRestController {
-
 	@Autowired
 	private CartService cartService;
 	
 	@Autowired
 	private OrderService orderService;
 	
-
-	@GetMapping("/carts")
-	public List<Cart> getCarts() {
-		
-		return cartService.getCarts();
-		
-	}
 	
-	@PostMapping("/addCart")
+	@PostMapping("/sendOrder")
 	public ResponseEntity<String> addItem(@RequestBody ShopRequest req) {
 		Cart cart = req.getCart();
 		
 		cart.setId(0);
 		cartService.saveCart(cart);
 		int cartId = cart.getId();
-		List<Order> orders = req.getOrders();
+		List<Order> orders = req .getOrders();
 		for(Order order : orders) {
 			order.setCartId(cartId);
 			orderService.saveOrder(order);
 		}
+//		System.out.println("Order name: "+cart.getName()+" Order details: " + cart.getDetails() + " Order price: " + cart.getFullPrice());
+//		for(Order order : orders) {
+//			System.out.println("The items that have been orderd: " + order.getDetails());
+//		}
+		//Call waitTime api 
+	    
 		
-		return new ResponseEntity<>("Data submitted successfullys", HttpStatus.OK);
+		return new ResponseEntity<>("The shop has got the order!", HttpStatus.OK);
 
 	}
 	
-	// also just in case the pass an id in JSON ... set id to 0
-	// this is force a save of new item ... instead of update
-	
-//	cart.setId(0);
-//	
-//	cartService.saveCart(cart);
-//	
-//	int cartId = cart.getId();
-//	
-//	Order order = new Order();
-//	order.setCartId(cartId);
-//	orderService.saveOrder(order);
-	@GetMapping("/getCart/{cartId}")
-	public Cart addItem(@PathVariable int cartId) {
+
+	@GetMapping("/getNewOrder") // fetch every minute in ReactJS
+	public ResponseEntity<Cart> test() {
 		
-	
-		Cart cart = cartService.getCart(cartId);
+		Cart cart = cartService.getNewCart();
 		
-		return cart;
+		return new ResponseEntity<>(cart, HttpStatus.OK);
 	}
 	
-//	@PostMapping("/sendOrder")
-//	public Order sendOrder(@RequestBody Order order) {	
-//		
-//		order.setId(0);
-//		
-//		orderService.saveOrder(order);
-//		
-//		return order;
-//	}
 	
+	
+	
+	//customer react page should show the 
 	
 }

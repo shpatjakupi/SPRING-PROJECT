@@ -34,5 +34,11 @@ public class CartServiceImpl implements CartService {
 	public Cart getCart(int cartId) {
 		return cartDAO.getCart(cartId);
 	}
+	
+	@Override
+	@Transactional
+	public Cart getNewCart() {
+		 return cartDAO.getNewCart();
+	}
 
 }

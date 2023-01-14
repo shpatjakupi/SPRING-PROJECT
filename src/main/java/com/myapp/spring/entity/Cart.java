@@ -1,5 +1,7 @@
 package com.myapp.spring.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +27,17 @@ public class Cart {
 	@Column(name="Full_price")
 	private int fullPrice;
 	
+	@Column(name="Date")
+	private Date date;
+	
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public Cart() {
 		
@@ -58,13 +71,14 @@ public class Cart {
 		return fullPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice + "]";
-	}
-
 	public void setFullPrice(int fullPrice) {
 		this.fullPrice = fullPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice + ", date="
+				+ date + "]";
 	}
 	
 	

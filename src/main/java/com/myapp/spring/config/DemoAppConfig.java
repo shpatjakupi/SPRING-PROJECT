@@ -22,8 +22,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-@Configuration
-@EnableWebMvc
+//@Configuration
+//@EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("com.myapp.spring")
 @PropertySource({ "classpath:persistence-mysql.properties" })

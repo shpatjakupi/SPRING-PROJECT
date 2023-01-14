@@ -11,5 +11,7 @@ public interface CartDAO {
 	public void saveCart(Cart cart);
 
 	public Cart getCart(int cartId);
+	
+	public Cart getNewCart();
 
 }
