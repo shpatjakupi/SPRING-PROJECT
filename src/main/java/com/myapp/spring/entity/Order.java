@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +18,9 @@ public class Order {
 	@Column(name="Id")
 	private int id;
 	
-	@Column(name="Cart_id")
-	private int cartId;
+	@ManyToOne
+    @JoinColumn(name = "Cart_id", nullable = false)
+    private Cart cart;
 	
 	@Column(name="Details")
 	private String details;
@@ -25,18 +28,17 @@ public class Order {
 	public Order() {
 		
 	}
+	public Cart getCart() {
+        return cart;
+    }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 	public int getId() {
 		return id;
 	}
 
-	public int getCartId() {
-		return cartId;
-	}
-
-	public void setCartId(int cartId) {
-		this.cartId = cartId;
-	}
 
 	public void setId(int id) {
 		this.id = id;

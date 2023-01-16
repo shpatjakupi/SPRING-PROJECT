@@ -33,18 +33,11 @@ public class AppRestController {
 	public ResponseEntity<String> addItem(@RequestBody ShopRequest req) {
 		Cart cart = req.getCart();
 		
-		cart.setId(0);
 		cartService.saveCart(cart);
-		int cartId = cart.getId();
-		List<Order> orders = req .getOrders();
-		for(Order order : orders) {
-			order.setCartId(cartId);
-			orderService.saveOrder(order);
+		for (Order order : req.getOrders()) {
+            order.setCart(cart);
+            orderService.saveOrder(order);
 		}
-//		System.out.println("Order name: "+cart.getName()+" Order details: " + cart.getDetails() + " Order price: " + cart.getFullPrice());
-//		for(Order order : orders) {
-//			System.out.println("The items that have been orderd: " + order.getDetails());
-//		}
 		//Call waitTime api 
 	    
 		

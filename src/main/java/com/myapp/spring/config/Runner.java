@@ -1,7 +1,9 @@
 package com.myapp.spring.config;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Stack;
 
@@ -12,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.myapp.spring.entity.Cart;
+import com.myapp.spring.entity.Order;
 
 public class Runner {
 	public static void main(String[] args) {
@@ -20,21 +23,19 @@ public class Runner {
         SessionFactory sessionFactory = context.getBean(SessionFactory.class);
         Session currentSession = sessionFactory.openSession();
 
-     // Get current date and time
-        Instant now = Instant.now();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = formatter.format(new Date());
+   
+        Query<Cart> theQuery = currentSession.createQuery("from Cart where date = :currentDate",Cart.class);
+		theQuery.setParameter("currentDate", currentDate);
 
-        // Format as ISO 8601 string
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
-        String currentDate = formatter.format(now);
-       
-        Query<Cart> theQuery = currentSession.createQuery("from Cart c where c.date = :currentDate", Cart.class);
-        theQuery.setParameter("currentDate", currentDate);
-		
-		// execute query and get result list
 		List<Cart> carts = theQuery.getResultList();
-        
+       
 		for(Cart cart : carts) {
-			System.out.println(cart.toString());
+			List<Order> list = cart.getOrders();
+			for(Order order : list) {
+				System.out.println(order.getDetails());
+			}
 		}
 		// And Get Orders from that query
 		

@@ -45,6 +45,8 @@ public class CartDAOImpl implements CartDAO {
 		currentSession.saveOrUpdate(cart);
 
 	}
+	
+	
 
 	@Override
 	public Cart getCart(int cartId) {
