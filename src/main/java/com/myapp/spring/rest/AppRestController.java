@@ -15,48 +15,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myapp.spring.dto.ShowOrderDTO;
+import com.myapp.spring.dto.CartDTO;
+import com.myapp.spring.dto.ItemDTO;
 import com.myapp.spring.dto.ParseOrderDTO;
 import com.myapp.spring.entity.Cart;
 import com.myapp.spring.entity.Item;
 import com.myapp.spring.service.AdminService;
-import com.myapp.spring.service.CartService;
-import com.myapp.spring.service.ItemService;
+import com.myapp.spring.service.CustomerService;
 
 @RestController
 @RequestMapping("/order-app")
 public class AppRestController {
 	@Autowired
-	private CartService cartService;
+	private AdminService adminService;
 	
 	@Autowired
-	private ItemService orderService;
-		
-	@Autowired
-	private AdminService adminService;
+	private CustomerService CustomerService;
+	
 	
 	@PostMapping("/sendOrder") 
 	public ResponseEntity<String> addItem(@RequestBody ParseOrderDTO req) {
-		Cart cart = req.getCart();
-		
-		cartService.saveCart(cart);
-		for (Item item : req.getItems()) {
-			item.setCart(cart);
-            orderService.saveItem(item);
-		}
+		CustomerService.saveOrder(req.getCart(), req.getItems());
 	 
-	    
-		
 		return new ResponseEntity<>("The shop has got the order!", HttpStatus.OK);
 
 	}
 
 	@GetMapping("/getTodaysOrders") // fetch every minute in ReactJS
-	public ResponseEntity<List <ShowOrderDTO>>  test() {
+	public ResponseEntity<List<ShowOrderDTO>>  test() {
 		List<ShowOrderDTO> todaysOrderList = new ArrayList();
 			
-		List<Cart> fullOrder = adminService.getFullOrder();
+		List<CartDTO> fullOrder = adminService.getFullOrder();
 		
-		for(Cart cart : fullOrder) {
+		for(CartDTO cart : fullOrder) {
 			ShowOrderDTO orderDTO = new ShowOrderDTO();
 			orderDTO.setCart(cart);
 			todaysOrderList.add(orderDTO);

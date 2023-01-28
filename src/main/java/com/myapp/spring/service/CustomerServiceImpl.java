@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.myapp.spring.dao.AdminDAO;
+import com.myapp.spring.dao.CustomerDAO;
 import com.myapp.spring.dto.CartDTO;
-import com.myapp.spring.entity.Cart;
-
+import com.myapp.spring.dto.ItemDTO;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	private AdminDAO adminDAO;
+	private CustomerDAO customerDAO;
 	
 	@Override
 	@Transactional
-	public List<CartDTO> getFullOrder() {
-		return adminDAO.getFullOrder();
+	public void saveOrder(CartDTO cartDTO, List<ItemDTO> items) {
+		customerDAO.saveOrder(cartDTO, items);
+
 	}
 
 }

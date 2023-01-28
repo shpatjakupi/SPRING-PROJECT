@@ -1,10 +1,13 @@
 package com.myapp.spring.dto;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.myapp.spring.entity.Cart;
+import com.myapp.spring.entity.Item;
 
 public class CartDTO {
 
-    private int id;
     private String name;
     private String details;
     private int fullPrice;
@@ -14,14 +17,16 @@ public class CartDTO {
     public CartDTO() {
 
     }
+    public CartDTO(Cart cart) {
 
-    public int getId() {
-        return id;
+        this.date = cart.getDate();
+        this.name = cart.getName();
+        this.details = cart.getDetails();
+        this.fullPrice = cart.getFullPrice();
+        this.items = ItemDTO.getItemDTOList(cart.getItems());
     }
+    
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -43,23 +48,20 @@ public class CartDTO {
         return fullPrice;
     }
 
-    public void setFullPrice(int fullPrice) {
+	public List<ItemDTO> getItems() {
+		return items;
+	}
+	public void setItems(List<ItemDTO> items) {
+		this.items = items;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public void setFullPrice(int fullPrice) {
         this.fullPrice = fullPrice;
     }
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public List<ItemDTO> getItems() {
-        return items;
-    }
-
-    public void setItems(List<ItemDTO> items) {
-        this.items = items;
     }
 }

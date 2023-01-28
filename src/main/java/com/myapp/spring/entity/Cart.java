@@ -37,7 +37,7 @@ public class Cart {
 	private String date;
 	
 	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private List<Item> items;
 	
