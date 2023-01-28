@@ -9,9 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
-@Table(name="Orders")
-public class Order {
+@Table(name="Item")
+public class Item {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,12 +22,13 @@ public class Order {
 	
 	@ManyToOne
     @JoinColumn(name = "Cart_id", nullable = false)
+	@JsonBackReference
     private Cart cart;
 	
 	@Column(name="Details")
 	private String details;
 	
-	public Order() {
+	public Item() {
 		
 	}
 	public Cart getCart() {

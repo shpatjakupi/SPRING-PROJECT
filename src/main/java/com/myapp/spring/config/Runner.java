@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.myapp.spring.entity.Cart;
-import com.myapp.spring.entity.Order;
+import com.myapp.spring.entity.Item;
 
 public class Runner {
 	public static void main(String[] args) {
@@ -32,8 +32,8 @@ public class Runner {
 		List<Cart> carts = theQuery.getResultList();
        
 		for(Cart cart : carts) {
-			List<Order> list = cart.getOrders();
-			for(Order order : list) {
+			List<Item> list = cart.getItems();
+			for(Item order : list) {
 				System.out.println(order.getDetails());
 			}
 		}

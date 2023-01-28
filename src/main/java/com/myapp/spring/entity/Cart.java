@@ -6,11 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="Cart")
@@ -33,11 +36,13 @@ public class Cart {
 	@Column(name="Date")
 	private String date;
 	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-	    private List<Order> orders;
 	
-	public List<Order> getOrders() {
-	        return orders;
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JsonManagedReference
+	private List<Item> items;
+	
+	public List<Item> getItems() {
+	        return items;
 	    }
 
 	public String getDate() {

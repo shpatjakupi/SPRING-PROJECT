@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myapp.spring.config.DemoAppConfig;
 import com.myapp.spring.entity.Cart;
-import com.myapp.spring.entity.Order;
+import com.myapp.spring.entity.Item;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
