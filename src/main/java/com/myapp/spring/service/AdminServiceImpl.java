@@ -19,8 +19,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	@Transactional
-	public List<CartDTO> getFullOrder() {
-		return adminDAO.getFullOrder();
+	public List<CartDTO> getOrdersFromToday() {
+		return adminDAO.getOrdersFromToday();
 	}
 
 }

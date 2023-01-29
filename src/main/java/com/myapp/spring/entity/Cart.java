@@ -33,24 +33,28 @@ public class Cart {
 	@Column(name="Full_price")
 	private int fullPrice;
 	
-	@Column(name="Date")
-	private String date;
+	@Column(name="Ordered_date")
+	private String orderedDate;
 	
+	@Column(name="Pick_up_date")
+	private String pickUpDate;
 	
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@OneToMany(mappedBy = "cart")
 	private List<Item> items;
+	
+	@Column(name = "Pre_order")
+	private boolean preOrder;
 	
 	public List<Item> getItems() {
 	        return items;
 	    }
 
-	public String getDate() {
-		return date;
+	public String getOrderedDate() {
+		return orderedDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setOrderedDate(String orderedDate) {
+		this.orderedDate = orderedDate;
 	}
 
 	public Cart() {
@@ -67,6 +71,14 @@ public class Cart {
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean isPreOrder() {
+		return preOrder;
+	}
+
+	public void setPreOrder(boolean preOrder) {
+		this.preOrder = preOrder;
 	}
 
 	public void setName(String name) {
@@ -91,10 +103,22 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice + ", date="
-				+ date + "]";
+		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice
+				+ ", orderedDate=" + orderedDate + ", PickUpDate=" + pickUpDate + ", items=" + items + ", preOrder="
+				+ preOrder + "]";
 	}
-	
+
+	public String getPickUpDate() {
+		return pickUpDate;
+	}
+
+	public void setPickUpDate(String pickUpDate) {
+		this.pickUpDate = pickUpDate;
+	}
+
+
+
+
 	
 	
 

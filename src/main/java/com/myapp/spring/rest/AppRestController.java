@@ -42,12 +42,12 @@ public class AppRestController {
 	}
 
 	@GetMapping("/getTodaysOrders") // fetch every minute in ReactJS
-	public ResponseEntity<List<ShowOrderDTO>>  test() {
+	public ResponseEntity<List<ShowOrderDTO>> showTodaysOrder() {
 		List<ShowOrderDTO> todaysOrderList = new ArrayList();
-			
-		List<CartDTO> fullOrder = adminService.getFullOrder();
+	     
+		List<CartDTO> todaysOrder = adminService.getOrdersFromToday();
 		
-		for(CartDTO cart : fullOrder) {
+		for(CartDTO cart : todaysOrder) {
 			ShowOrderDTO orderDTO = new ShowOrderDTO();
 			orderDTO.setCart(cart);
 			todaysOrderList.add(orderDTO);

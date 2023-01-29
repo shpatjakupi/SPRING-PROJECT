@@ -7,5 +7,5 @@ import com.myapp.spring.entity.Cart;
 
 
 public interface AdminDAO {
-	public List<CartDTO> getFullOrder();
+	public List<CartDTO> getOrdersFromToday();
 }

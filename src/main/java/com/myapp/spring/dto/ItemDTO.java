@@ -12,11 +12,8 @@ public class ItemDTO {
     private CartDTO cartDTO;
     
     public ItemDTO() {
-    }
-
     
-	
-
+    }
 
 	public void setCartDTO(CartDTO cartDTO) {
 		this.cartDTO = cartDTO;

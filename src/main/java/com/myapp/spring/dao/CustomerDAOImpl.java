@@ -24,11 +24,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		
 		Cart cart = new Cart();
-		cart.setDate(cartDTO.getDate());
+		cart.setOrderedDate(cartDTO.getOrderedDate());
+		cart.setPickUpDate(cartDTO.getPickUpDate());
 		cart.setDetails(cartDTO.getDetails());
 		cart.setFullPrice(cartDTO.getFullPrice());
 		cart.setName(cartDTO.getName());
-	
+		cart.setPreOrder(cartDTO.isPreOrder());
 		currentSession.saveOrUpdate(cart);
         
         for(ItemDTO itemdto : items) {
