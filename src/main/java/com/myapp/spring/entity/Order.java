@@ -1,23 +1,18 @@
 package com.myapp.spring.entity;
 
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-@Entity
-@Table(name="Cart")
-public class Cart {
+@Entity(name="Order")
+@javax.persistence.Table(name = "`Order`")
+public class Order {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,11 +34,14 @@ public class Cart {
 	@Column(name="Pick_up_date")
 	private String pickUpDate;
 	
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "order")
 	private List<Item> items;
 	
 	@Column(name = "Pre_order")
 	private boolean preOrder;
+	
+	@Column(name = "Order_done")
+	private boolean orderDone;
 	
 	public List<Item> getItems() {
 	        return items;
@@ -57,7 +55,7 @@ public class Cart {
 		this.orderedDate = orderedDate;
 	}
 
-	public Cart() {
+	public Order() {
 		
 	}
 
@@ -101,11 +99,23 @@ public class Cart {
 		this.fullPrice = fullPrice;
 	}
 
+	public boolean isOrderDone() {
+		return orderDone;
+	}
+
+	public void setOrderDone(boolean orderDone) {
+		this.orderDone = orderDone;
+	}
+
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice
-				+ ", orderedDate=" + orderedDate + ", PickUpDate=" + pickUpDate + ", items=" + items + ", preOrder="
-				+ preOrder + "]";
+		return "Order [id=" + id + ", name=" + name + ", details=" + details + ", fullPrice=" + fullPrice
+				+ ", orderedDate=" + orderedDate + ", pickUpDate=" + pickUpDate + ", items=" + items + ", preOrder="
+				+ preOrder + ", orderDone=" + orderDone + "]";
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	public String getPickUpDate() {

@@ -3,20 +3,19 @@ package com.myapp.spring.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.myapp.spring.entity.Cart;
 import com.myapp.spring.entity.Item;
 
 public class ItemDTO {
 
     private String details;
-    private CartDTO cartDTO;
+    private OrderDTO orderDTO;
     
     public ItemDTO() {
     
     }
 
-	public void setCartDTO(CartDTO cartDTO) {
-		this.cartDTO = cartDTO;
+	public void setCartDTO(OrderDTO orderDTO) {
+		this.orderDTO = orderDTO;
 	}
 
 	public ItemDTO(Item item) {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myapp.spring.dao.CustomerDAO;
-import com.myapp.spring.dto.CartDTO;
+import com.myapp.spring.dto.OrderDTO;
 import com.myapp.spring.dto.ItemDTO;
 
 @Service
@@ -18,9 +18,11 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	@Transactional
-	public void saveOrder(CartDTO cartDTO, List<ItemDTO> items) {
-		customerDAO.saveOrder(cartDTO, items);
+	public void saveOrder(OrderDTO orderDTO, List<ItemDTO> items) {
+		customerDAO.saveOrder(orderDTO, items);
 
 	}
+	
+	
 
 }

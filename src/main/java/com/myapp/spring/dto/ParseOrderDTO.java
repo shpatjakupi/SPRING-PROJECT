@@ -2,15 +2,12 @@ package com.myapp.spring.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.myapp.spring.entity.Cart;
-import com.myapp.spring.entity.Item;
+
 
 public class ParseOrderDTO {
 	
   
-    private CartDTO cart;
+    private OrderDTO order;
 
     
     private List<ItemDTO> items;
@@ -18,12 +15,12 @@ public class ParseOrderDTO {
 	public ParseOrderDTO() {
 	
 	}	
-	public CartDTO getCart() {
+	public OrderDTO getOrder() {
 	
-		return cart;
+		return order;
 	}
-	public void setCart(CartDTO cart) {
-		this.cart = cart;
+	public void setOrder(OrderDTO order) {
+		this.order = order;
 	}
 	public List<ItemDTO> getItems() {
 		return items;
@@ -33,7 +30,7 @@ public class ParseOrderDTO {
 	}
 	@Override
 	public String toString() {
-		return "fullRepo [cart=" + cart + ", orders=" + items + "]";
+		return "fullRepo [cart=" + order + ", orders=" + items + "]";
 	}
 
 

@@ -1,15 +1,13 @@
 package com.myapp.spring.dto;
 
-import com.myapp.spring.entity.Cart;
 
 public class ShowOrderDTO {
-	private CartDTO cart;
+	private OrderDTO order;
 	
-	public CartDTO getCart() {
-		
-		return cart;
+	public OrderDTO getOrder() {
+		return order;
 	}
-	public void setCart(CartDTO cart) {
-		this.cart = cart;
+	public void setOrder(OrderDTO order) {
+		this.order = order;
 	}
 }
